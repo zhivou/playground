@@ -48,6 +48,8 @@ const items = [
 ];
 
 const cart = {};
+const output = document.createElement('div');
+document.body.appendChild(output);
 
 items.forEach( function(i) {
     let div = document.createElement('div');
@@ -56,6 +58,7 @@ items.forEach( function(i) {
     div.style.border = '1px solid #ddd';
     div.style.display = 'inline-block';
     div.style.width = '100px';
+    div.style.cursor = 'pointer';
     //
     // Here is the cart simulation. Example of nested dictionary
     // {item: {name, price, qty, subtotal(func)}}
@@ -64,7 +67,6 @@ items.forEach( function(i) {
     //
     div.addEventListener('click', function () {
         let namer = i.item.toLowerCase();
-        console.log(namer);
 
         if( cart[namer] ){
             cart[namer].qty++;
@@ -79,7 +81,22 @@ items.forEach( function(i) {
                 }
             }
         }
+        relist();
     });
+
+    function relist() {
+        output.innerHTML = "";
+        console.log(cart);
+        let total = 0;
+        // For loop example through {key{value}key{value}key{value}}
+        // when there is a nested hash in hash
+        for(let pro in cart) {
+            total += cart[pro].subtotal();
+            output.innerHTML += `${cart[pro].name} $${cart[pro].price}`;
+            output.innerHTML += `x${cart[pro].qty} $${cart[pro].subtotal()}<br>`;
+        }
+        output.innerHTML += `<strong>Total: $${total}</strong>`;
+    }
 
     document.body.appendChild(div)
 });
