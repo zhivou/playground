@@ -32,3 +32,38 @@ function Car(
 
 
 const myCar = new Car(color = 'white', brand = 'vw', make = 'Jetta', year = 2017, price = 28000);
+
+
+
+//
+// Roll Dice Game
+//
+function DiceGame() {
+
+  this.roll = function() {
+    return this.result = Math.floor(Math.random()*6)+1;
+  };
+
+  this.winner = function(player, computer) {
+    if ( player > computer ) {
+      return "Player Wins"
+    }
+    else if ( player < computer ) {
+      return "Computer Wins"
+    }
+    else {
+      return "Tie"
+    }
+  }
+}
+
+$("#rollButton").click(function() {
+  let player = game.roll();
+  let computer = game.roll();
+  $("#result")
+      .html(
+          `Player: ${player} ` + `Computer: ${computer}` + "<br>" +
+          game.winner(player, computer));
+});
+
+const game = new DiceGame();
