@@ -33,3 +33,25 @@ myCar.drive = function () {
 myCar.park = function () {
     console.log(`I am parking my ${this.color.toLowerCase()} ${this.make}...`)
 };
+
+////
+// Simulating Cart Items. forEach example like each in ruby:
+//
+const items = [
+
+    { item: 'banana', cost: 1, id: 21 },
+    { item: 'apple', cost: 2, id: 13 },
+    { item: 'cheese', cost: 4, id: 71 },
+    { item: 'tomato', cost: 4, id: 49 },
+    { item: 'lemon', cost: 1, id: 31 }
+
+];
+
+items.forEach( function(i) {
+    let div = document.createElement('div');
+    div.innerHTML = `<h3>${i.item}</h3>$${i.cost}`;
+    div.style.border = '1px solid #ddd';
+    div.style.display = 'inline-block';
+    div.style.width = '100px';
+    document.body.appendChild(div)
+});
