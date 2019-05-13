@@ -47,11 +47,39 @@ const items = [
 
 ];
 
+const cart = {};
+
 items.forEach( function(i) {
     let div = document.createElement('div');
+
     div.innerHTML = `<h3>${i.item}</h3>$${i.cost}`;
     div.style.border = '1px solid #ddd';
     div.style.display = 'inline-block';
     div.style.width = '100px';
+    //
+    // Here is the cart simulation. Example of nested dictionary
+    // {item: {name, price, qty, subtotal(func)}}
+    // Also example of listener(probably not that relevant will be using
+    // jquery or react anyways...
+    //
+    div.addEventListener('click', function () {
+        let namer = i.item.toLowerCase();
+        console.log(namer);
+
+        if( cart[namer] ){
+            cart[namer].qty++;
+        }
+        else {
+            cart[namer] = {
+                name: i.item,
+                price: i.cost,
+                qty: 1,
+                subtotal: function () {
+                    return this.price * this.qty
+                }
+            }
+        }
+    });
+
     document.body.appendChild(div)
 });
