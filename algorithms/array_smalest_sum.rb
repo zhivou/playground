@@ -22,6 +22,4 @@ def height_to_low(array)
   array
 end
 
-sorted_a = height_to_low(a)
-sorted_b = height_to_low(b)
-
+puts height_to_low(a).last + height_to_low(b).last

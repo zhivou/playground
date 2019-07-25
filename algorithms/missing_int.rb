@@ -7,19 +7,14 @@
 # sum of all numbers in the array and compare with expected sum, the difference would be the missing number.
 #
 
-array = [1,2,3,5,6,7,8,9,10]
+array = [2,3,4,5,6,7,8,9,10]
 expected_sum = 0
-expected_sum_lenght = 10
 sum = 0
+expected_length = array.length + 1
 
-for i in 0..expected_sum_lenght do
-  expected_sum = expected_sum + i
+for i in 1..expected_length
+  expected_sum += i
 end
-
-array.each do |number|
-  number
-  sum = sum + number
-end
-
-missing_number = expected_sum - sum
-print(missing_number)
+array.each { |element| sum += element }
+result = expected_sum - sum
+puts result
