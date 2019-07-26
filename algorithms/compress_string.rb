@@ -19,9 +19,14 @@ def compress(string)
   for i in 0..string.length - 1
     count_consecutive +=1
 
-    if i > string.length || string.chars[i] != string.chars[i+1]
-      compressed_string << string.chars[i].to_s + count_consecutive.to_s
-      count_consecutive = 0
+    if string.chars[i] != string.chars[i+1]
+      if count_consecutive == 1
+        compressed_string << string.chars[i].to_s
+        count_consecutive = 0
+      else
+        compressed_string << string.chars[i].to_s + count_consecutive.to_s
+        count_consecutive = 0
+      end
     end
   end
   compressed_string.join
