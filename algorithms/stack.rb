@@ -16,8 +16,9 @@ class Stack
       puts 'The Stack is full or Element is not provided. Returning nil!'
       nil
     else
-      @stack.push(element)
       @top +=1
+      @stack[@top] = element
+      self
     end
   end
 
@@ -27,8 +28,10 @@ class Stack
       nil
     else
       popper = @stack[@top]
+      @stack[@top] = nil
       @top -=1
-      popper
+      puts "Taking out #{popper}"
+      self
     end
   end
 
