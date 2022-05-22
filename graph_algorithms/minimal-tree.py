@@ -2,14 +2,13 @@
 # Given sorted, increasing inorder Array of int[]
 # => BST(Binary Search Tree)
 #
-
 class TreeNode:
     def __init__(self, value):
         self.value = value
         self.start = None
         self.end = None
 
-def create_minimal_bst(self, array):
+def create_minimal_bst(array):
     if not array:
         return None
     
@@ -39,9 +38,22 @@ def create_minimal_bst(self, array):
     ## ....
     ## 999: Will stop when all array elements are iterated.
     node = TreeNode(array[mid])
-    node.left = create_minimal_bst(arr[:mid])
-    node.right = create_minimal_bst(arr[mid+1:])
+    node.start = create_minimal_bst(array[:mid])
+    node.end = create_minimal_bst(array[mid+1:])
 
-    return mid
+    return node
+
+def traverse_pre_order(node: TreeNode):
+    """
+    Expects to get entry node
+    """
+    if not node:
+        return
+
+    print(node.value)
+    traverse_pre_order(node.start)
+    traverse_pre_order(node.end)
 
 arr = [1, 2, 3, 4, 5, 6, 7]
+root = create_minimal_bst(arr)
+traverse_pre_order(root)
