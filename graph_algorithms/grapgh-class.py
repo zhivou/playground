@@ -22,7 +22,7 @@ class Grapgh:
         """
         if(u == v):
             return True
-            
+
         visited = [False] * self.V
         queue = []
         route = []
@@ -45,7 +45,7 @@ class Grapgh:
         
         return False
         
-        
+
 g = Grapgh(4)
 g.add_edge(0, 1)
 g.add_edge(0, 2)
